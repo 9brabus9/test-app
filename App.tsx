@@ -1,29 +1,39 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import React, { Component } from 'react';
+import { Button, View, StyleSheet} from 'react-native';
+import  Hihomie from './Hihomie';
 
-import React from 'react'
-import { Component } from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import t from 'tcomb-form-native'; // 0.6.9
 
 
-/*const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});*/
+const Form = t.form.Form;
 
-type Props = {};
-export default class App extends Component<Props> {
+const User = t.struct({
+  email: t.String,
+  username: t.String,
+  password: t.String,
+  terms: t.Boolean
+});
+
+export default class App extends Component {
+  handleSubmit = () => {
+    const value = this._form.getValue(); // use that ref to get the form value
+   
+    if(value.terms===true){
+      alert("fgsdgfd");
+    }
+    else alert("screw you");
+  }
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Nativedfg!</Text>
+         <Form 
+          ref={c => this._form = c} // assign a ref
+          type={User} 
+        />
+        <Button
+          title="Sign Up!"
+          onPress={this.handleSubmit}
+        />
       </View>
     );
   }
@@ -31,19 +41,9 @@ export default class App extends Component<Props> {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+    marginTop: 50,
+    padding: 20,
+    backgroundColor: '#ffffff',
   },
 });

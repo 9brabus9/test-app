@@ -7,9 +7,13 @@
     "test": "jest"
   },
   "dependencies": {
+    "native-base": "^2.7.2",
     "react": "16.4.1",
     "react-native": "0.56.0",
+    "react-native-form-builder": "^1.0.15",
     "react-native-typescript-transformer": "^1.2.10",
+    "react-navigation": "^2.9.3",
+    "tcomb-form-native": "^0.6.15",
     "typescript": "^2.9.2"
   },
   "devDependencies": {
