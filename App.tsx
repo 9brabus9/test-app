@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Button, View, StyleSheet} from 'react-native';
-import  Hihomie from './Hihomie';
-
+import { createStackNavigator } from 'react-navigation';
 import t from 'tcomb-form-native'; // 0.6.9
 
 
@@ -14,14 +13,14 @@ const User = t.struct({
   terms: t.Boolean
 });
 
-export default class App extends Component {
+ class App extends Component {
   handleSubmit = () => {
     const value = this._form.getValue(); // use that ref to get the form value
    
-    if(value.terms===true){
+    if(value!==null&&value.terms===true){
       alert("fgsdgfd");
     }
-    else alert("screw you");
+    else alert("screw YOU");
   }
   render() {
     return (
@@ -36,6 +35,18 @@ export default class App extends Component {
         />
       </View>
     );
+  }
+}
+
+const RootStack = createStackNavigator({
+  Home: {
+    screen: App
+  },
+});
+
+export default class App extends React.Component {
+  render() {
+    return <RootStack />;
   }
 }
 
